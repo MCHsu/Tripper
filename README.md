@@ -1,4 +1,4 @@
-# tripper-1019
+# tripper
 
 ## Project setup
 ```

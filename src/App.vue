@@ -1,30 +1,37 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div class="flex h-screen flex-col ">
+    <!-- <main class="mt-20 flex-grow"> -->
+    <MainNav />
+    <main :class="['mt-[3.25rem] flex-grow sm:mt-16', activeClass]">
+      <router-view />
+      <ModalWindow />
+    </main>
+    <TheFooter />
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
+import MainNav from "@/components/Navigation/MainNav.vue";
+import TheFooter from "@/components/Footer/TheFooter.vue";
+import ModalWindow from "@/components/Shared/ModalWindow.vue";
+import { onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
+import { useProductStore } from "@/stores/product.js";
 
-nav {
-  padding: 30px;
+const route = useRoute();
+const productStore = useProductStore();
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+onMounted(async () => {
+  if (!productStore.products.length) {
+    await productStore.getProducts();
   }
-}
-</style>
+});
+
+const activeClass = computed(() => {
+  if (["cart", "checkout", "userProfile", "userOrder","ordersDetail"].includes(route.name)) {
+    return "bg-[#FAFAFA]";
+  } else {
+    return null;
+  }
+});
+</script>
