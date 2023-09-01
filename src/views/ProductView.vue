@@ -1,5 +1,8 @@
 <template>
-  <div v-if="isLoading" class="container flex h-full items-center justify-center">
+  <div
+    v-if="isLoading"
+    class="container flex h-full items-center justify-center"
+  >
     <h2>Loading...</h2>
   </div>
   <div v-else-if="product !== null" id="product" class="flex flex-col">
@@ -49,7 +52,14 @@
             <h2>Description</h2>
           </div>
           <div class="mt-6 rounded-3xl bg-slate-50 p-8">
-            <p>{{ product.description }}</p>
+            <p class="whitespace-pre-line">
+              {{
+                product.description
+                  .replaceAll("\\n", "\n")
+                  .replaceAll("\\n\\u2022", "\n\u2022")
+                  .replaceAll("\\xa0", "\xa0")
+              }}
+            </p>
           </div>
         </div>
         <!-- map -->
