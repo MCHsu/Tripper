@@ -1,6 +1,6 @@
 import { ref, onBeforeMount } from "vue";
 import { defineStore } from "pinia";
-import { auth, db } from "@/stores/firebaseConfig";
+import { auth, db } from "@/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 import { useModalStore } from "@/stores/modal";

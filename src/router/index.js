@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { auth, onAuthStateChanged } from "@/stores/firebaseConfig";
+import { auth, onAuthStateChanged } from "@/firebaseConfig";
 import { useModalStore } from "@/stores/modal";
 import LogInModal from "@/components/Navigation/LogInModal.vue";
 

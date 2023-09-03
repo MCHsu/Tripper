@@ -2,7 +2,6 @@
 node_modules
 /dist
 
-
 # local env files
 .env.local
 .env.*.local
@@ -23,5 +22,5 @@ pnpm-debug.log*
 *.sw?
 
 #firebaseConfig
-src/stores/firebaseConfig.js
+/src/firebaseConfig.js
 

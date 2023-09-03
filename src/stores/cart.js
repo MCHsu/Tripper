@@ -2,7 +2,7 @@ import { ref, computed, watchEffect } from "vue";
 import { defineStore } from "pinia";
 import { useModalStore } from "@/stores/modal";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "@/stores/firebaseConfig";
+import { db } from "@/firebaseConfig";
 import { useUserStore } from "@/stores/user";
 import { useToastStore } from "@/stores/toast";
 import { useCreateBookingNum } from "@/composables/useCreateBookingNum";
