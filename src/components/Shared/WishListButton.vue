@@ -32,6 +32,7 @@ const props = defineProps({
 });
 
 const wishListStore = useWishListStore();
+
 const isAdded = computed(() => {
   return wishListStore.wishLists.includes(props.product.id);
 });

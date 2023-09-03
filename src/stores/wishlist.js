@@ -26,7 +26,9 @@ export const useWishListStore = defineStore("wishList", () => {
   function getWishListItems() {
     const resultItems = [];
     for (const id of wishLists.value) {
-      const matchedProduct = products.value.find((product) => product.id === id);
+      const matchedProduct = products.value.find(
+        (product) => product.id === id
+      );
       if (matchedProduct) {
         resultItems.push(matchedProduct);
       }

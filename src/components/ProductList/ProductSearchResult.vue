@@ -1,12 +1,4 @@
 <template>
-  <!-- <div
-    v-if="isLoading === true && filteredProducts.length === 0"
-    class="container flex grow items-center justify-center"
-  >
-    <h2>Loading...</h2>
-  </div> -->
-
-  <!-- <div  class="h-full"> -->
   <div
     v-if="filteredProducts.length !== 0"
     class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
@@ -20,7 +12,6 @@
   <div v-else class="flex h-full flex-grow items-center justify-center">
     <ResultNotFound />
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>

@@ -1,5 +1,6 @@
 <template>
   <form
+    id="form"
     novalidate
     class="no-scrollbar mt-6 flex w-full flex-col items-center overflow-y-auto md:mt-9 md:px-3"
     @submit.prevent="submitForm"
@@ -108,7 +109,7 @@ const v$ = useVuelidate(rules, formData, { $lazy: true });
 
 async function submitForm() {
   const result = await v$.value.$validate();
-  console.log("result", result);
+
   if (result) {
     authStore.signUpUser(formData);
   } else {

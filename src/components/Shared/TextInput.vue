@@ -20,17 +20,6 @@
         {{ errMsg.$message }}
       </li>
     </ul>
-
-    <!-- <span
-      v-if="!modelValue"
-      class="peer-[&:not(:placeholder-shown):not(:focus):invalid]:block hidden text-sm text-error"
-      >此欄位為必填</span
-    >
-    <span
-      v-if="modelValue"
-      class="peer-[&:not(:placeholder-shown):not(:focus):invalid]:block hidden text-sm text-error"
-      >請輸入正確的格式</span
-    > -->
   </div>
 </template>
 

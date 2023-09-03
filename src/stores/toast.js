@@ -1,4 +1,3 @@
-// import { ref, markRaw } from "vue";
 import { defineStore } from "pinia";
 import { useToast } from "vue-toastification";
 
@@ -31,7 +30,7 @@ export const useToastStore = defineStore("toast", () => {
     ".Vue-Toastification__toast.custom-layout { padding: 8px 24px; box-shadow: none; border-radius: 16px; font-family: Poppins; }"
   );
   sheet.insertRule(
-    ".Vue-Toastification__toast-body.custom-layout { display: flex; align-items: center; font-weight: 500; } ",
+    ".Vue-Toastification__toast-body.custom-layout { display: flex; align-items: center; font-weight: 500; } "
   );
   sheet.insertRule(
     ".Vue-Toastification__close-button.custom-close-btn { color: #57af34; } "

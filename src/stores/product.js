@@ -6,6 +6,8 @@ import {
   addDoc,
   getDocs,
   serverTimestamp,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 
 export const useProductStore = defineStore("product", () => {
@@ -44,7 +46,6 @@ export const useProductStore = defineStore("product", () => {
   }
 
   const getUniqueProduct = computed(() => {
-    // console.log(products.value);
     return (id) => {
       return products.value.find((product) => {
         return product.id === id;
@@ -52,22 +53,7 @@ export const useProductStore = defineStore("product", () => {
     };
   });
 
-  //   const sortedProducts = computed(() => {
-  //     return (sortBy) => {
-  //       const result=[]
-
-  //       if (sortBy === 'lowToHigh') {
-  //        result= filteredProducts.value.sort((a, b) => a.price - b.price);
-  //       } else if (sortBy === 'highToLow') {
-  //         result=filteredProducts.value.sort((a, b) => b.price - a.price);
-  //       }
-  // return result
-  //     },
-  //   });
-
   function SortProducts(sortBy) {
-    // const result = filteredProducts.value;
-
     if (sortBy === "lowToHigh") {
       filteredProducts.value.sort((a, b) => a.price - b.price);
     } else if (sortBy === "highToLow") {
@@ -90,42 +76,6 @@ export const useProductStore = defineStore("product", () => {
       return results;
     };
   });
-  // function searchProducts(keyword) {
-  //   const results = products.value.filter((product) => {
-  //     return (
-  //       product.name
-  //         .toLowerCase()
-  //         .indexOf(keyword.toLowerCase().split(/\s+/).join("")) !== -1 ||
-  //       product.country
-  //         .toLowerCase()
-  //         .indexOf(keyword.toLowerCase().split(/\s+/).join("")) !== -1
-  //     );
-  //   });
-  //   filteredProducts.value = results;
-  //   console.log("searchResults", filteredProducts.value);
-  //   return results;
-  // }
-  // function searchProducts(keyword) {
-  //   const keywords = keyword.split(" ");
-  //   const results = [];
-  //   // const results = products.value.filter((product) => {
-  //   //   product.name.toLowerCase().includes(keywords) ||
-  //   //     product.country.toLowerCase().includes(keywords);
-  //   // });
-
-  //   keywords.forEach((str) => {
-  //     products.value.forEach((item) => {
-  //       if (
-  //         item.name.toLowerCase().includes(str.toLowerCase()) ||
-  //         item.country.toLowerCase().includes(str.toLowerCase()) ||
-  //         item.category.toLowerCase().includes(str.toLowerCase())
-  //       ) {
-  //         results.push(item);
-  //       }
-  //     });
-  //   });
-  //   return [...new Set(results)];
-  // }
 
   function getLatestProducts() {
     const latestProducts = [...products.value];
@@ -140,9 +90,7 @@ export const useProductStore = defineStore("product", () => {
   }
 
   function getFilteredProducts(keyword, filtersData) {
-    // console.time("start time");
     isLoading.value = true;
-    console.log("isLoading", isLoading.value);
 
     const { countries, categories } = filtersData;
     let filteredResult = [];
@@ -176,75 +124,23 @@ export const useProductStore = defineStore("product", () => {
     }
 
     isLoading.value = false;
-    // console.timeEnd("start time");
-  console.log("isLoading", isLoading.value);
+
     return filteredResult;
   }
-  // function getFilteredProducts(keyword, filtersData) {
-  //   console.time("start time");
-  //   isLoading.value = true;
-
-  //   const filteredByCountries = [];
-  //   const filteredByCategories = [];
-  //   const { countries, categories } = filtersData;
-
-  //   if (keyword) {
-  //     filteredProducts.value = searchProducts.value(keyword);
-  //     if (countries.length === 0 && categories.length === 0) {
-  //       isLoading.value = false;
-  //       return;
-  //     }
-  //   } else {
-  //     filteredProducts.value = products.value;
-  //   }
-
-  //   if (countries.length !== 0) {
-  //     countries.forEach((country) => {
-  //       const filteredResult = filteredProducts.value.filter((product) => {
-  //         return product.country === country;
-  //       });
-  //       filteredByCountries.push(...filteredResult);
-  //     });
-  //   }
-
-  //   if (categories.length !== 0) {
-  //     categories.forEach((category) => {
-  //       const filteredResult = filteredProducts.value.filter((product) => {
-  //         return product.category === category;
-  //       });
-  //       filteredByCategories.push(...filteredResult);
-  //     });
-  //   }
-
-  //   if (countries.length !== 0 && categories.length !== 0) {
-  //     const FilteredProductsResult = filteredByCountries.filter((e) => {
-  //       return filteredByCategories.indexOf(e) > -1;
-  //     });
-
-  //     filteredProducts.value = FilteredProductsResult;
-  //   } else {
-  //     filteredProducts.value = [
-  //       ...filteredByCountries,
-  //       ...filteredByCategories,
-  //     ];
-  //   }
-  //   isLoading.value = false;
-  //   console.timeEnd("start time");
-  // }
 
   async function setProducts() {
     try {
       await addDoc(productsRef, {
-        name: "Kyoto Suburb Day Tour from Osaka: Amanohashidate, Ine Funaya, & Miyama Kayabuki No Sato | Japan",
-        category: "Day Tour",
-        price: 2244,
-        country: "Japan",
+        name: "Seafood Dinner Buffet at Kad Kafe Restaurant by Shangri-La Hotel Chiang Mai | Thailand",
+        category: "Food & Dining",
+        price: 1445,
+        country: "Thailand",
         address:
-          "1-3, Dotonbori 1-chome, Chuo-ku, Osaka City, Osaka Prefecture",
+          "89/8 Changklan Rd, Tambon Chang Khlan, Mueang Chiang Mai District, Chiang Mai 50100, Thailand",
         image:
-          "https://images.unsplash.com/photo-1681823190775-1aee67c71e8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1320&q=80",
+          "https://images.unsplash.com/photo-1588791174744-7e9bf4378277?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
         description:
-          "Discover the enchanting beauty of Kyoto by the sea on an incredible Tripper Signature Tour. Witness the awe-inspiring 'flying dragon' Amanohashidate, a geological wonder and experience the charm of a bygone era with a serene boat cruise to the Ine Boathouse complex and a leisurely stroll through the picturesque Miyama thatched house village. Enjoy the convenience of private transport as you explore these popular attractions, immersing yourself in the unique landscapes and local architecture that make Kyoto truly magical.",
+          "Nestled within the serene embrace of northern Thailand's cultural gem, the Shangri-La Hotel Chiang Mai, lies a culinary haven that promises an unforgettable gastronomic experience - Kad Kafe Restaurant. Set against the backdrop of Chiang Mai's rich heritage and natural beauty, this dining establishment offers much more than just a meal; it offers a journey into the heart of Thai flavors and hospitality. From its enticing menu to its captivating ambiance, here's what you can expect from your visit to Kad Kafe Restaurant.",
         created_at: serverTimestamp(),
       });
     } catch (err) {
@@ -254,6 +150,14 @@ export const useProductStore = defineStore("product", () => {
 
   // setProducts();
 
+  async function updateProducts() {
+    await updateDoc(doc(db, "products", "5VRzSF2RUKQe4zU9wnzQ"), {
+      description:
+        "Set off from Melbourne on a Great Ocean Road trip to see the best that Australia's South Coast has to offer. The famous 150-mile stretch has breathtaking views of the Bass Strait; along the way, you'll glimpse lighthouses, natural rock formations, and beautiful beaches.\n\nBreathe in the fresh air as you stand in awe of the lush forests in Great Otway National Park. Why not meet and greet local wildlife too? Try to spot the koalas and parrots in the foliage. You can even join a self-guided eco tour to learn more about the park's flora and fauna.\n\nContinue your scenic drive to Port Campbell National Park, and see the striking seascape of The Twelve Apostles, a magnificent collection of limestone stacks rising up out of the ocean. For a closer look, head to the Gibson Steps, which lead to a golden stretch of Gibson Beach. The 70-meter-high vertical cliffs are certainly a sight to behold.\n\nThen, head west to a nature trail along the enchanting Loch Ard Gorge, named after the famous 1878 shipwreck. Catch sight of the sunset on crystal clear blue water, flanked by incredible yellow-washed cliffs",
+    });
+  }
+
+  // updateProducts();
   return {
     products,
     filteredProducts,
@@ -261,16 +165,15 @@ export const useProductStore = defineStore("product", () => {
     categories,
     sortBy,
     filters,
-    getProducts,
     getUniqueProduct,
-    // sortedProducts,
     isLoading,
     searchProducts,
+    getProducts,
     setProducts,
     getLatestProducts,
     getRandomProducts,
     getFilteredProducts,
     SortProducts,
-    // getProductsByCategory,
+    updateProducts,
   };
 });

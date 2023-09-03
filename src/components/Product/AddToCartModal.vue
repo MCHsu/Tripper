@@ -1,5 +1,6 @@
 <template>
   <form
+    id="form"
     novalidate
     class="flex h-[calc(100%-141px-5rem)] w-full flex-col md:h-auto"
     @submit.prevent="submitForm"
@@ -13,7 +14,7 @@
       <div v-if="showErrorMsg && !isDateSelected" class="mb-4 text-error">
         Please select a usage date
       </div>
-      
+
       <div
         class="mb-4 flex items-center justify-between rounded-xl border border-border p-4"
       >

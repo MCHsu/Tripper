@@ -1,5 +1,4 @@
 <template>
-  <!-- <footer class="bg-[#f2f1f1] border-t"> -->
   <footer class="border-t border-border bg-white">
     <div
       :class="[
@@ -64,7 +63,6 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-// const currentRoute = computed(() => route.name);
 const activeClass = computed(() => {
   switch (route.name) {
     case "cart":

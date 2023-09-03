@@ -1,5 +1,6 @@
 <template>
   <form
+    id="form"
     novalidate
     class="no-scrollbar mt-6 flex w-full flex-col items-center overflow-y-auto md:mt-9 md:px-3"
     @submit.prevent="submitForm"
@@ -22,7 +23,6 @@
         @blur="v$.password.$touch"
         @focus="v$.password.$dirty = false"
       />
-      <!-- <button class="text-14-r">忘記密碼</button> -->
     </div>
     <p v-if="authStore.errMsg" class="text-14-r mt-6 w-full text-error">
       * {{ authStore.errMsg }}
@@ -40,15 +40,6 @@
     >
       Not a member yet? Join Now!
     </button>
-    <!-- <div class="flex w-full flex-col items-center gap-10">
-      <div class="h-px w-full bg-border"></div>
-      <button
-        class="text-18-r flex w-full items-center justify-center gap-2 rounded-2xl border border-gray-300 py-3"
-        @click="logInWithGoogle()"
-      >
-        <img src="@/assets/Icon/GoogleLogo.svg" />Log in with Google
-      </button>
-    </div> -->
   </form>
 </template>
 
@@ -83,6 +74,7 @@ const v$ = useVuelidate(rules, formData, { $lazy: true });
 
 async function submitForm() {
   const result = await v$.value.$validate();
+
   if (result) {
     authStore.logInUser(formData);
   } else {
@@ -93,5 +85,4 @@ async function submitForm() {
 function openSignUpModal() {
   openModal({ component: SignUpModal });
 }
-
 </script>

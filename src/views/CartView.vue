@@ -17,7 +17,7 @@
               @remove="cartStore.removeFromCart(cartItem)"
             />
           </div>
-          <!-- 前往結帳條 -->
+
           <div
             ref="checkoutBar"
             class="fixed -bottom-[1px] left-0 flex h-min w-full items-center bg-white shadow-none md:h-20 lg:sticky lg:mt-4"
@@ -112,7 +112,7 @@ const {
   cartTotalPrice,
 } = storeToRefs(cartStore);
 const router = useRouter();
-// const { openModal } = useModalStore();
+
 const checkoutBar = ref(null);
 const allSelected = ref(true);
 
@@ -142,8 +142,6 @@ function handleCheckout() {
 }
 
 onMounted(() => {
-  // cartStore.selectedCartItems = cartStore.validCartItems;
-
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (checkoutBar.value) {

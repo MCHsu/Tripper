@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col rounded-2xl bg-white border border-border px-5 py-2 sm:px-8 sm:py-3 md:px-10 lg:px-14 lg:py-4">
+  <div
+    class="flex flex-col rounded-2xl border border-border bg-white px-5 py-2 sm:px-8 sm:py-3 md:px-10 lg:px-14 lg:py-4"
+  >
     <div
       :class="[
         'flex cursor-pointer items-center justify-between py-3',

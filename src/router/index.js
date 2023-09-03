@@ -122,8 +122,6 @@ router.beforeEach(async (to, from, next) => {
       openModal({
         component: LogInModal,
       });
-      // next("/");
-      // next("/");
     }
   } else {
     next();

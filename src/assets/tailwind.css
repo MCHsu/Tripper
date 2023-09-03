@@ -5,13 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    /* font-family: Poppins; */
-  }
   html {
-    /* padding-right: 1rem; */
-    scrollbar-gutter: stable ;
-    /* padding-left: calc(100vw - 100%); */
+    scrollbar-gutter: stable;
     color: #444444;
     font-family: Poppins;
     cursor: default;
@@ -19,47 +14,33 @@
 
   ::-webkit-scrollbar {
     width: 1rem;
-
-    /* box-sizing: border-box; */
   }
   ::-webkit-scrollbar-track {
     background-color: transparent;
-    /* border-left: 1px solid #e2e8f0; */
-    /* border-right: 1px solid transparent; */
-
-    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #B6C6CE;
-    /* border-left: 4px solid transparent;
-    border-right: 4px solid transparent; */
+    background-color: #b6c6ce;
     border: 4px solid transparent;
     border-radius: 1rem;
     background-clip: content-box;
   }
 
-  h1{
-    @apply text-2xl sm:text-3xl font-semibold
+  h1 {
+    @apply text-2xl font-semibold sm:text-3xl;
   }
 
-  h2{
-    @apply text-xl sm:text-2xl font-semibold
+  h2 {
+    @apply text-xl font-semibold sm:text-2xl;
   }
-  h3{
-    @apply text-[1.375rem] font-semibold
+  h3 {
+    @apply text-[1.375rem] font-semibold;
   }
 }
 
 @layer utilities {
-  .text-36-sb {
-    @apply text-3xl font-semibold;
-  }
   .text-24-sb {
     @apply text-2xl font-semibold;
-  }
-  .text-20-sb {
-    @apply text-xl font-semibold;
   }
   .text-18-sb {
     @apply text-lg font-semibold;
@@ -94,8 +75,8 @@
       display: none;
     }
     .no-scrollbar {
-      -ms-overflow-style: none; 
-      scrollbar-width: none; 
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   }
 }

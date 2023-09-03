@@ -13,7 +13,6 @@
     :masks="masks"
     @click="$emit('usageDate', date)"
   />
-  <!-- :min-date="new Date().setDate(new Date().getDate() + 1)" -->
 </template>
 
 <script setup>

@@ -50,9 +50,7 @@ import ProductItemSwiper from "@/components/Home/ProductItemSwiper.vue";
 import SubNav from "@/components/Navigation/SubNav.vue";
 import HomeBanner from "@/components/Home/HomeBanner.vue";
 import BannerSwiper from "@/components/Home/BannerSwiper.vue";
-// import { storeToRefs } from "pinia";
 import { useProductStore } from "@/stores/product";
 
-// const { products } = storeToRefs(useProductStore());
 const { getRandomProducts, getLatestProducts } = useProductStore();
 </script>

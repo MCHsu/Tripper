@@ -24,7 +24,6 @@
       ]"
     >
       <div class="flex flex-col lg:gap-10">
-        <!-- product Info -->
         <div class="flex flex-col gap-6">
           <div class="flex items-center justify-between">
             <p class="w-max rounded-lg bg-[#F6F8F0] px-2.5 py-2 text-[#57af34]">
@@ -62,24 +61,6 @@
             </p>
           </div>
         </div>
-        <!-- map -->
-        <!-- <div class="mt-6 flex flex-col">
-          <div class="flex items-center">
-            <span class="mr-2 h-6 w-2 rounded bg-primary"></span>
-            <h2>Location</h2>
-          </div>
-          <div class="mt-6 overflow-hidden rounded-3xl bg-slate-50 p-8">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.3528070066945!2d139.69079981521628!3d35.69293473019155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd57ca23f51%3A0x92e37e24b01c24ee!2z5paw5a6_aS1MYW5kIFRvd2Vy!5e0!3m2!1szh-TW!2stw!4v1680023627824!5m2!1szh-TW!2stw"
-              width="100%"
-              height="320"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div> -->
       </div>
 
       <div

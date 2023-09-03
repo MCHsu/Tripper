@@ -54,19 +54,6 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-// const checked = ref(null);
-
-// watchEffect(() => {
-//   if(props.modelValue){
-//   if (props.value) {
-//     checked.value = props.modelValue.includes(props.value);
-//   } else {
-//     checked.value = props.modelValue;
-//   }}else{
-//     checked.value = true
-//   }
-// });
-
 const checked = computed(() => {
   if (props.value) {
     return props.modelValue.includes(props.value);

@@ -9,9 +9,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  // serverTimestamp,
 } from "firebase/auth";
 
 const firebaseErrors = {
@@ -27,7 +24,6 @@ export const useAuthStore = defineStore("auth", () => {
   const isLoggedIn = ref(false);
   const errMsg = ref("");
   const router = useRouter();
-  // const usersRef = collection(db, "users");
   const modalStore = useModalStore();
 
   onBeforeMount(() => {
@@ -47,7 +43,6 @@ export const useAuthStore = defineStore("auth", () => {
         data.email,
         data.password
       );
-      console.log("Successfully registered");
 
       await setDoc(doc(db, "users", userData.user.uid), {
         id: userData.user.uid,
@@ -56,27 +51,18 @@ export const useAuthStore = defineStore("auth", () => {
       modalStore.closeModal();
     } catch (error) {
       errMsg.value = firebaseErrors[error.code];
-      console.log(error.code);
-      console.log("failed");
     }
   }
 
   async function logInUser(data) {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      console.log("login success");
+
       modalStore.closeModal();
       isLoggedIn.value = true;
     } catch (error) {
-      console.log("login failed");
       errMsg.value = firebaseErrors[error.code];
     }
-  }
-
-  async function logInWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    let result = await signInWithPopup(auth, provider);
-    console.log(result.user);
   }
 
   async function logOutUser() {
@@ -84,7 +70,6 @@ export const useAuthStore = defineStore("auth", () => {
     localStorage.removeItem("userInfo");
     localStorage.removeItem("orderLists");
     isLoggedIn.value = false;
-    console.log("logout");
     router.push("/");
   }
 
@@ -94,6 +79,5 @@ export const useAuthStore = defineStore("auth", () => {
     logInUser,
     logOutUser,
     signUpUser,
-    logInWithGoogle,
   };
 });

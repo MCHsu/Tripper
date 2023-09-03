@@ -92,11 +92,6 @@ defineProps({
     required: false,
     default: "Where to go or what to do",
   },
-  // keyword: {
-  //   type: String,
-  //   required: false,
-  //   default: "",
-  // },
 });
 
 function hideDropdown() {

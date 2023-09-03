@@ -1,7 +1,8 @@
 <template>
-  <div  id="checkout">
+  <div id="checkout">
     <CartStepBar />
     <form
+      id="form"
       novalidate
       class="container mb-6 lg:mb-14 lg:mt-12 lg:grid lg:grid-cols-[4fr_2fr] lg:gap-8 xl:gap-12"
       @submit.prevent="submitForm"
@@ -149,7 +150,7 @@ import TextInput from "@/components/Shared/TextInput.vue";
 import BaseAccordion from "@/components/Shared/BaseAccordion.vue";
 import CartStepBar from "@/components/Shared/CartStepBar.vue";
 import CheckoutItemCard from "@/components/Card/CheckoutItemCard.vue";
-import { ref, onMounted, reactive,onBeforeUnmount } from "vue";
+import { ref, onMounted, reactive, onBeforeUnmount } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
@@ -168,7 +169,6 @@ const router = useRouter();
 const cartStore = useCartStore();
 const { checkoutItems } = storeToRefs(cartStore);
 const checkoutBar = ref(null);
-// const newCheckoutItems = ref(checkoutItems.value);
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -188,9 +188,9 @@ onMounted(() => {
   }
 });
 
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   localStorage.removeItem("checkoutItems");
-})
+});
 
 const formData = reactive({
   buyerInfo: {
@@ -204,7 +204,7 @@ const formData = reactive({
     cardExpire: null,
     cvc: null,
   },
-  orderedItems: cartStore.checkoutItems,
+  orderedItems: checkoutItems.value,
 });
 
 const rules = {
@@ -235,7 +235,6 @@ const v$ = useVuelidate(rules, formData, { $lazy: true });
 async function submitForm() {
   const result = await v$.value.$validate();
   if (result) {
-    console.log("formData", formData);
     cartStore.checkout(formData);
     router.push({ path: "/checkout-done" });
   } else {

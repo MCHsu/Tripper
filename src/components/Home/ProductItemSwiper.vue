@@ -51,11 +51,8 @@
 <script setup>
 import ProductCard from "@/components/Card/ProductCard.vue";
 import { ref,defineProps} from "vue";
-// import { storeToRefs } from "pinia";
-// import { useProductStore } from "@/stores/product";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 
-// const { products } = storeToRefs(useProductStore());
 defineProps({
   products: {
     type: Array,

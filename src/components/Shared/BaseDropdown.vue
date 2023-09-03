@@ -20,7 +20,7 @@
       ]"
     >
       <div ref="dropdownContentSlot" @click="toggle">
-        <slot  />
+        <slot />
       </div>
     </div>
   </div>

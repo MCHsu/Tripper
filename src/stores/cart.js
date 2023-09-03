@@ -39,11 +39,6 @@ export const useCartStore = defineStore("cart", () => {
   watchEffect(() => {
     cartItems.value.forEach((item) => {
       item.totalPrice = item.price * item.quantity;
-      // if(new Date(item.date)>new Date()){
-      //   validCartItems.value.push(item);
-      // }else{
-      //   expiredCartItems.value.push(item);
-      // }
     });
 
     validCartItems.value = cartItems.value.filter((item) => {
@@ -142,7 +137,6 @@ export const useCartStore = defineStore("cart", () => {
     data.orderedItems.forEach((item) => {
       removeFromCart(item);
     });
-    // localStorage.removeItem("checkoutItems");
   }
 
   return {
@@ -160,7 +154,3 @@ export const useCartStore = defineStore("cart", () => {
     checkout,
   };
 });
-
-// if (import.meta.webpackHot) {
-//   import.meta.webpackHot.accept(acceptHMRUpdate(useCartStore, import.meta.webpackHot));
-// }

@@ -1,9 +1,8 @@
 <template>
   <section>
-    <!-- content -->
     <div>
       <h2 class="mb-6">My Profile</h2>
-      <form novalidate @submit.prevent="submitForm">
+      <form id="form" novalidate @submit.prevent="submitForm">
         <div class="grid grid-cols-2 gap-x-2 gap-y-4 sm:gap-4 lg:gap-6">
           <TextInput
             v-model="formData.firstName"
@@ -77,8 +76,7 @@ const formData = reactive({
   lastName: userInfo.value.lastName,
   phone: userInfo.value.phone,
 });
-// console.log(userInfo.value.phone);
-// console.log(formData.phone);
+
 const isModified = computed(() => {
   return (
     formData.firstName !== userInfo.value.firstName ||
@@ -102,8 +100,7 @@ const v$ = useVuelidate(rules, formData, { $lazy: true });
 
 async function submitForm() {
   const result = await v$.value.$validate();
-  // const anyDirty = v$.value.$anyDirty;
-  console.log("anyDirty", isModified.value);
+
   if (result && isModified.value) {
     updateUserProfile(formData);
   } else {

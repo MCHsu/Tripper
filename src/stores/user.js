@@ -1,4 +1,4 @@
-import { ref, computed,  } from "vue";
+import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { auth, db } from "@/stores/firebaseConfig";
 import {
@@ -6,7 +6,6 @@ import {
   setDoc,
   onSnapshot,
   collection,
-  // getDocs,
   serverTimestamp,
 } from "firebase/firestore";
 import { useToastStore } from "@/stores/toast";
@@ -14,30 +13,13 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export const useUserStore = defineStore("user", () => {
   const userInfo = ref(JSON.parse(localStorage.getItem("userInfo")) || {});
-  // const orderListsRef = collection(db, "users", userInfo.value?.id, "orders");
   const { showToastSuccess } = useToastStore();
-  const orderLists = ref(
-    JSON.parse(localStorage.getItem("orderLists")) || []
-  );
+  const orderLists = ref(JSON.parse(localStorage.getItem("orderLists")) || []);
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       getUserInfo(user);
       getOrders();
-
-      // console.log("orderLists.value 111", orderLists.value);
-
-      // const userInfoData = {
-      //   userInfo: JSON.parse(localStorage.getItem("userInfo")),
-      //   orderLists: [...orderLists.value],
-      // };
-
-      // console.log("orderLists.value 666", orderLists.value);
-      // console.log("userInfoData 777", userInfoData);
-
-      // localStorage.setItem("userInfo", JSON.stringify(userInfoData));
-
-      // console.log("orderLists.value", orderLists.value);
     }
   });
 
@@ -49,7 +31,6 @@ export const useUserStore = defineStore("user", () => {
   }
 
   async function updateUserProfile(data) {
-    console.log("userInfo.value.length", userInfo.value.id);
     if (userInfo.value) {
       await setDoc(
         doc(db, "users", userInfo.value.id),
@@ -61,7 +42,6 @@ export const useUserStore = defineStore("user", () => {
   }
   function getOrders() {
     const orderListsRef = collection(db, "users", userInfo.value?.id, "orders");
-    // const orderListsData = await getDocs(orderListsRef);
 
     onSnapshot(orderListsRef, (docSnap) => {
       const newOrderLists = [];
@@ -78,24 +58,10 @@ export const useUserStore = defineStore("user", () => {
       orderLists.value = newOrderLists;
       localStorage.setItem("orderLists", JSON.stringify(orderLists.value));
     });
-
-    
-    // return newOrderLists;
-    // orderLists.value = newOrderLists;
-
-    // orderLists.value.sort((a, b) => {
-    //   if (a.date !== b.date) {
-    //     return b.date - a.date;
-    //   } else {
-    //     return b.ordered_at - a.ordered_at;
-    //   }
-    // });
-    // console.log("orderLists.value2", orderLists.value);
   }
 
   const getUniqueOrder = computed(() => {
     return (bookingNum) => {
-      console.log("orderLists.value3", orderLists.value);
       return orderLists.value.find((order) => {
         return order.bookingNum === bookingNum;
       });
@@ -105,9 +71,8 @@ export const useUserStore = defineStore("user", () => {
   return {
     userInfo,
     orderLists,
-    getOrders,
     getUniqueOrder,
-    // orders,
+    getOrders,
     updateUserProfile,
   };
 });

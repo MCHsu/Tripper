@@ -24,9 +24,4 @@ import { storeToRefs } from "pinia";
 const userStore = useUserStore();
 const { orderLists } = storeToRefs(userStore);
 
-
-
-// console.log("userStore.orderLists", orderLists);
-// console.log("userStore.orderLists", userStore.orderLists);
-
 </script>

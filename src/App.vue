@@ -1,6 +1,5 @@
 <template>
   <div class="flex h-screen flex-col ">
-    <!-- <main class="mt-20 flex-grow"> -->
     <MainNav />
     <main :class="['mt-[3.25rem] flex-grow sm:mt-16', activeClass]">
       <router-view />

@@ -68,13 +68,9 @@
   >
     <SearchBar />
   </div>
-
-  <!-- <SubNav v-if="route.path === '/'" /> -->
 </template>
 
 <script setup>
-// import SearchModal from "@/components/Navigation/SearchModal.vue";
-// import SubNav from "@/components/Navigation/SubNav.vue";
 import UserImage from "@/components/Navigation/UserImage.vue";
 import SearchBar from "@/components/Shared/SearchBar.vue";
 import LogInModal from "@/components/Navigation/LogInModal.vue";
@@ -101,20 +97,11 @@ const isBadgeHidden = computed(() => {
   return cartStore.cartItemNum === 0;
 });
 
-// function openSearchModal() {
-//   openModal({
-//     component: SearchModal,
-//   });
-// }
 function openSearch() {
   isSearchOpened.value = !isSearchOpened.value;
 }
 const showSearch = computed(() => {
-  if (route.name === "home" || route.name === "checkout") {
-    return false;
-  } else {
-    return true;
-  }
+  return route.name === "home" || route.name === "checkout" ? false : true;
 });
 
 function openLogInModal() {

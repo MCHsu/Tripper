@@ -23,7 +23,6 @@
 import { ref, computed, defineEmits, defineProps } from "vue";
 import { PlusIcon, MinusIcon } from "@heroicons/vue/24/outline";
 
-const emit = defineEmits(["countNum"]);
 const props = defineProps({
   defaultQuantity: {
     type: Number,
@@ -31,6 +30,8 @@ const props = defineProps({
     default: 1,
   },
 });
+
+const emit = defineEmits(["countNum"]);
 
 const quantity = ref(props.defaultQuantity);
 

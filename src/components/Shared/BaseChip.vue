@@ -51,5 +51,4 @@ function toggleChip() {
   if (props.type !== "removable") isSelectedRef.value = !props.isSelected;
   emit("chipState", isSelectedRef.value);
 }
-
 </script>

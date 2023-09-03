@@ -58,7 +58,13 @@
 <script setup>
 import UpdateCartItemModal from "@/components/Cart/UpdateCartItemModal.vue";
 import BaseCheckbox from "@/components/Shared/BaseCheckbox.vue";
-import { defineProps, computed, defineEmits, onUnmounted,onMounted } from "vue";
+import {
+  defineProps,
+  computed,
+  defineEmits,
+  onUnmounted,
+  onMounted,
+} from "vue";
 import { useCartStore } from "@/stores/cart";
 import { useModalStore } from "@/stores/modal";
 import { useFormattedPrice } from "@/composables/useFormattedPrice";
@@ -75,7 +81,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  cartStore.selectedCartItems.push(props.product)
+  cartStore.selectedCartItems.push(props.product);
 });
 
 onUnmounted(() => {

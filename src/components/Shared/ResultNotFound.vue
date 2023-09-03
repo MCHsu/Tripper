@@ -5,19 +5,18 @@
       alt="result-not-found"
       class="w-60"
     />
-    <p class="text-18-m text-font-gray-1 mb-6">{{text}}</p>
+    <p class="text-18-m mb-6 text-font-gray-1">{{ text }}</p>
   </div>
 </template>
 
 <script setup>
-import { defineProps} from "vue";
+import { defineProps } from "vue";
 
 defineProps({
   text: {
     type: String,
     required: false,
-    default:"No search results found"
+    default: "No search results found",
   },
 });
-
 </script>
