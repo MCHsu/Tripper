@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watchEffect } from "vue";
+import { ref, computed, watchEffect } from "vue";
 import { useUserStore } from "@/stores/user";
 import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
@@ -102,9 +102,11 @@ import { useFormattedDate } from "@/composables/useFormattedDate";
 import { TicketIcon, MegaphoneIcon } from "@heroicons/vue/24/outline";
 
 const route = useRoute();
-const { getUniqueOrder, orderLists } = storeToRefs(useUserStore());
-const order = ref(orderLists.value[0]);
+const { getUniqueOrder } = storeToRefs(useUserStore());
 const isExpired = ref(false);
+
+const currentBookingNum = computed(() => route.params.id);
+const order = ref(getUniqueOrder.value(currentBookingNum.value));
 const buyerInfo = ref([
   {
     title: "Booking no.",
@@ -127,12 +129,6 @@ const buyerInfo = ref([
     value: useFormattedDate(order.value.ordered_at.seconds),
   },
 ]);
-
-const currentBookingNum = computed(() => route.params.id);
-
-onMounted(() => {
-  order.value = getUniqueOrder.value(currentBookingNum.value);
-});
 
 watchEffect(() => {
   if (new Date() > new Date(order.value.date)) {
